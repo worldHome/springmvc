@@ -8,7 +8,7 @@
 		<constructor-arg>
 			<list>
 				<value>config/services/pe-daos.xml</value>
-				<value>config/pe/pe-propertyConfigurer.xml3</value>
+				<value>config/pe/pe-propertyConfigurer.xml4</value>
 				<value>config/services/pe-daos.xml</value>
 				<value>config/services/pe-bos.xml</value>
 				<value>config/services/pe-activiti.xml</value>
