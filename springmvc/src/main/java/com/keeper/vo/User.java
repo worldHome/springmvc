@@ -1,4 +1,4 @@
-package com.springmvc.vo;
+package com.keeper.vo;
 
 public class User {
 

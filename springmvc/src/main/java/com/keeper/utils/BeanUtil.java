@@ -1,9 +1,9 @@
-package com.springmvc.utils;
+package com.keeper.utils;
 
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.PropertyAccessorFactory;
 
-import com.springmvc.vo.User;
+import com.keeper.vo.User;
 
 public class BeanUtil {
 
