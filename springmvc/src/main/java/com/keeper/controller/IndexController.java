@@ -1,24 +1,16 @@
 package com.keeper.controller;
 
-import org.springframework.context.EnvironmentAware;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class IndexController implements EnvironmentAware {
-	private Environment environment;
+public class IndexController {
 
-	@RequestMapping(value = { "/index" }, method = RequestMethod.GET)
+	@RequestMapping(value = "/index")
 	public String index(Model model) {
-		model.addAttribute("msg", "Hello World");
-		return "index.jsp";
-	}
-
-	public void setEnvironment(Environment environment) {
-		this.environment = environment;
+		model.addAttribute("msg", "Index");
+		return "index";
 	}
 
 }
