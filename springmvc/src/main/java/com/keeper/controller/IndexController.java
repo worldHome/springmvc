@@ -12,7 +12,4 @@ public class IndexController {
 		model.addAttribute("msg", "Hello World");
 		return "index";
 	}
-	
-	
-
 }
