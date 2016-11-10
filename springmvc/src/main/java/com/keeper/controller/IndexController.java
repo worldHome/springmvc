@@ -1,7 +1,12 @@
 package com.keeper.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Locale;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Controller;
@@ -26,13 +31,14 @@ public class IndexController {
 		System.out.println(messageSource.getMessage("title.username", null, locale));
 		return "message";
 	}
-	@RequestMapping(value = "/file")
-	public void file(){
-		
-	}
-	
-	public String upload(@RequestParam(value = "file") CommonsMultipartFile file) {
 
+	@RequestMapping(value = "/file")
+	public String file() {
+		return "file";
+	}
+
+	public String upload(@RequestParam(value = "file") CommonsMultipartFile file) throws FileNotFoundException, IOException {
+		IOUtils.copy(file.getInputStream(), new FileOutputStream(new File("D:/123.txt")));
 		return "index";
 	}
 }
