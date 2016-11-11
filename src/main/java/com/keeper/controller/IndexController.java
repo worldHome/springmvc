@@ -1,10 +1,19 @@
 package com.keeper.controller;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Controller;
@@ -33,6 +42,7 @@ public class IndexController {
 
 	@RequestMapping(value = "/file")
 	public String file() {
+		System.out.println("file");
 		return "file";
 	}
 
@@ -46,4 +56,15 @@ public class IndexController {
 		outputStream.close();
 		return "index";
 	}
+
+	@RequestMapping(value = "/download")
+	public void download(HttpServletResponse response) throws Exception {
+		response.setHeader("Content-Disposition", "attachment;filename=\""
+				+ URLEncoder.encode("file.png", "UTF-8") + "\"");
+		IOUtils.copy(new FileInputStream(new File("D:/file.png")),
+				response.getOutputStream());
+		response.flushBuffer();
+		response.getOutputStream().close();
+	}
+
 }

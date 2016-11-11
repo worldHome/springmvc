@@ -12,7 +12,7 @@
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	<mvc:default-servlet-handler />
+	<mvc:default-servlet-handler default-servlet-name="default" />
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename" value="message" />
@@ -21,6 +21,11 @@
 		class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
 	<mvc:interceptors>
 		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+		<bean class="com.keeper.interceptor.FirstInterceptor" />
+		<mvc:interceptor>
+			<mvc:mapping path="/user/**"/>
+			<bean class="com.keeper.interceptor.SecondInterceptor" />
+		</mvc:interceptor>
 	</mvc:interceptors>
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
