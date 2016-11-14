@@ -1,26 +1,27 @@
 package com.keeper.controller;
 
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
+import com.keeper.vo.User;
 
 @Controller
 public class IndexController {
@@ -67,4 +68,18 @@ public class IndexController {
 		response.getOutputStream().close();
 	}
 
+	@RequestMapping(value = "/getUserList")
+	@ResponseBody
+	public AjaxResult getUserList() {
+		List<User> userList = new ArrayList<User>();
+		User user = new User();
+		user.setPassword("aabbcc");
+		user.setUserName("CCC");
+		userList.add(user);
+		user = new User();
+		user.setPassword("ffggmm得");
+		user.setUserName("FFF");
+		userList.add(user);
+		return new AjaxResult().with(userList);
+	}
 }
